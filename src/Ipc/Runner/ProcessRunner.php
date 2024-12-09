@@ -75,7 +75,7 @@ final class ProcessRunner extends RunnerAbstract
      */
     public static function start(string $session, int $startupId): bool
     {
-        if (PHP_SAPI === 'cli') {
+        if (PHP_SAPI === 'cli' or PHP_SAPI === 'micro') {
             $binary = PHP_BINARY;
         } else {
             $binary = self::$binaryPath ?? self::locateBinary();
@@ -105,7 +105,7 @@ final class ProcessRunner extends RunnerAbstract
             'cwd' => Magic::getcwd(),
         ];
         $root = '';
-        if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg') {
+        if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg'  && PHP_SAPI !== 'micro') {
             try {
                 $root = WebRunner::getAbsoluteRootDir();
             } catch (Throwable) {
