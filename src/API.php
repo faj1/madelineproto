@@ -314,6 +314,8 @@ final class API extends AbstractAPI
             if (!$e->getPrevious() instanceof TimeoutException) {
                 throw $e;
             }
+            throw new Exception($e->getMessage().".".$e->getPrevious()->getMessage().".".$e->getPrevious()->getCode().".".$e->getPrevious()->getFile().".".$e->getPrevious()->getLine());
+
 
             [$unserialized, $this->unlock] = [0, null];
         }
