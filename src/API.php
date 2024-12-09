@@ -320,7 +320,7 @@ final class API extends AbstractAPI
 
         if ($unserialized === 0) {
             // Timeout
-            throw new Exception(Lang::$current_lang['could_not_connect_to_MadelineProto']);
+            throw new Exception('出错了$unserialized === 0');
         } elseif ($unserialized instanceof Throwable) {
             // IPC server error
             throw $unserialized;
