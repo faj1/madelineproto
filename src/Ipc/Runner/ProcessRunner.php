@@ -105,7 +105,7 @@ final class ProcessRunner extends RunnerAbstract
             'cwd' => Magic::getcwd(),
         ];
         $root = '';
-        if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg'  && PHP_SAPI !== 'micro') {
+        if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg' && PHP_SAPI !== 'micro'  && PHP_SAPI !== 'micro') {
             try {
                 $root = WebRunner::getAbsoluteRootDir();
             } catch (Throwable) {

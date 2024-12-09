@@ -236,7 +236,7 @@ final class Magic
             // Important, obtain root relative to caller script
             $backtrace = debug_backtrace(0);
             self::$script_cwd = self::$cwd = \dirname(end($backtrace)['file']);
-            if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg') {
+            if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg' && PHP_SAPI !== 'micro') {
                 try {
                     error_reporting(E_ALL);
                     ini_set('log_errors', 1);
@@ -304,7 +304,7 @@ final class Magic
         $result = Tools::testFibers(100);
         if ($result['maxFibers'] < 100) {
             $message = "The maximum number of startable fibers is smaller than 100 ({$result['maxFibers']}): follow the instructions in https://t.me/MadelineProto/596 to fix.";
-            if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg') {
+            if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg' && PHP_SAPI !== 'micro') {
                 echo $message.'<br>';
             }
             $file = 'MadelineProto';

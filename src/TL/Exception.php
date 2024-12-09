@@ -34,7 +34,7 @@ final class Exception extends \Exception
     public function __toString(): string
     {
         $result = static::class.($this->message !== '' ? ': ' : '').$this->message.PHP_EOL.Magic::$revision.PHP_EOL.'TL Trace:'.PHP_EOL.PHP_EOL.$this->getTLTrace().PHP_EOL;
-        if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg') {
+        if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg' && PHP_SAPI !== 'micro') {
             $result = str_replace(PHP_EOL, '<br>'.PHP_EOL, $result);
         }
         return $result;

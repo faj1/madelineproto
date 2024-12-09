@@ -53,7 +53,7 @@ trait Start
         if ($this->getAuthorization() === \danog\MadelineProto\API::LOGGED_IN) {
             return $this instanceof Client ? $this->getSelf() : $this->fullGetSelf();
         }
-        if (PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg') {
+        if (PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' || PHP_SAPI === 'micro' || PHP_SAPI === 'micro') {
             if ($this->getAuthorization() === API::NOT_LOGGED_IN) {
                 $stdout = getStdout();
                 do {

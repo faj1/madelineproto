@@ -64,7 +64,7 @@ trait PrettyException
         $previous_trace = $this->tlTrace;
         $this->tlTrace = '';
         $eol = PHP_EOL;
-        if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg') {
+        if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg' && PHP_SAPI !== 'micro') {
             $eol = '<br>'.PHP_EOL;
         }
         $tl = false;

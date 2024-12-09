@@ -57,7 +57,7 @@ final class Logger extends SettingsAbstract
 
     public function __construct()
     {
-        $this->type = (PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg')
+        $this->type = (PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' || PHP_SAPI === 'micro')
             ? MadelineProtoLogger::ECHO_LOGGER
             : MadelineProtoLogger::FILE_LOGGER;
         Magic::start(light: true);
@@ -75,7 +75,7 @@ final class Logger extends SettingsAbstract
      */
     public function __wakeup(): void
     {
-        $this->type = (PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg')
+        $this->type = (PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' || PHP_SAPI === 'micro')
             ? MadelineProtoLogger::ECHO_LOGGER
             : MadelineProtoLogger::FILE_LOGGER;
         if (!$this->extra && $this->type === MadelineProtoLogger::FILE_LOGGER) {
@@ -133,7 +133,7 @@ final class Logger extends SettingsAbstract
     public function setExtra(callable|string|null $extra): self
     {
         if ($this->type === MadelineProtoLogger::CALLABLE_LOGGER && !\is_callable($extra)) {
-            $this->setType((PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg')
+            $this->setType((PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' || PHP_SAPI === 'micro')
                     ? MadelineProtoLogger::ECHO_LOGGER
                     : MadelineProtoLogger::FILE_LOGGER);
             return $this;

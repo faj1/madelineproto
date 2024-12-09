@@ -50,7 +50,7 @@ trait Loop
     public function initSelfRestart(): void
     {
         static $inited = false;
-        if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg' && !$inited) {
+        if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg' && PHP_SAPI !== 'micro' && !$inited) {
             try {
                 if (\function_exists('set_time_limit')) {
                     set_time_limit(-1);
@@ -79,7 +79,7 @@ trait Loop
             $this->logger->logger('Done webhost init process!');
             Tools::closeConnection($this->getWebMessage('The bot was started!'));
             $inited = true;
-        } elseif (PHP_SAPI === 'cli') {
+        } elseif (PHP_SAPI === 'cli' or PHP_SAPI !== 'micro') {
             try {
                 if (\function_exists('shell_exec') && file_exists('/data/data/com.termux/files/usr/bin/termux-wake-lock')) {
                     /** @psalm-suppress ForbiddenCode */

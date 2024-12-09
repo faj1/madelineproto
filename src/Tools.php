@@ -464,7 +464,7 @@ abstract class Tools extends AsyncTools
      */
     public static function closeConnection(string $message): void
     {
-        if (PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' || isset($GLOBALS['exited']) || headers_sent() || isset($_GET['MadelineSelfRestart']) || Magic::$isIpcWorker) {
+        if (PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' || PHP_SAPI === 'micro' || isset($GLOBALS['exited']) || headers_sent() || isset($_GET['MadelineSelfRestart']) || Magic::$isIpcWorker) {
             return;
         }
         $buffer = @ob_get_clean() ?: '';

@@ -279,7 +279,7 @@ final class Logger
         $newline = PHP_EOL;
         if ($this->mode === self::ECHO_LOGGER) {
             $stdout = getStdout();
-            if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg') {
+            if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg' && PHP_SAPI !== 'micro') {
                 $newline = '<br>'.$newline;
             }
         } elseif ($this->mode === self::FILE_LOGGER) {
@@ -327,7 +327,7 @@ final class Logger
         }
 
         self::$default = $this;
-        if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg') {
+        if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg' && PHP_SAPI !== 'micro') {
             try {
                 error_reporting(E_ALL);
                 ini_set('log_errors', '1');

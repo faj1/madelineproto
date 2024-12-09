@@ -52,7 +52,7 @@ trait Start
             throw new Exception('Not inited!');
         }
         $app = [];
-        if (PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg') {
+        if (PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' || PHP_SAPI === 'micro') {
             $stdout = getStdout();
             $stdout->write(sprintf(Lang::$current_lang['apiChooseManualAutoTip'], 'https://docs.madelineproto.xyz/docs/SETTINGS.html').PHP_EOL);
             $stdout->write('1) '.Lang::$current_lang['apiManualInstructions0'].PHP_EOL);

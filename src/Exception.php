@@ -68,7 +68,7 @@ class Exception extends \Exception
             $additional = sprintf(Lang::$current_lang['extensionRequiredInstallWithApt'], 'php'.PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION.'-'.$extensionName);
         }
         $message = sprintf(Lang::$current_lang['extensionRequired'], $extensionName, $additional);
-        if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg') {
+        if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg' && PHP_SAPI !== 'micro') {
             echo htmlentities($message).'<br>';
         }
         $file = 'MadelineProto';
@@ -112,7 +112,7 @@ class Exception extends \Exception
                 return;
             }
             http_response_code(500);
-            if (PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg') {
+            if (PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' || PHP_SAPI === 'micro') {
                 echo($s.PHP_EOL);
             } else {
                 echo(str_replace("\n", "<br>", htmlentities($s)).PHP_EOL);

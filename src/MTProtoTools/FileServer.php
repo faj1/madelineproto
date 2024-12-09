@@ -151,7 +151,7 @@ trait FileServer
     private static array $checkedAutoload = [];
     private function getDefaultDownloadScript(): string
     {
-        $isCli = (PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg');
+        $isCli = (PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' || PHP_SAPI === 'micro');
         if ($isCli && (!Magic::$isIpcWorker || !($_ENV['absoluteRootDir'] ?? null))) {
             throw new AssertionError(Lang::$current_lang["cli_need_dl.php_link"]);
         }
